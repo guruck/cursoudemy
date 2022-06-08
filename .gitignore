@@ -1,0 +1,10 @@
+# Logs
+logs
+*.log
+.metadata
+
+/bin/
+/.settings/
+/doc/
+.project
+.classpath
