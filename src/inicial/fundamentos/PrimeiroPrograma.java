@@ -5,6 +5,8 @@ import java.util.Scanner;
 
 /**
  *
+ * Classe que apresenta a estrutura basica do JAVA
+ *
  * @author guruck - guruck@gmail.com
  * @since JDK12.0
  *
@@ -42,15 +44,23 @@ public class PrimeiroPrograma {
 		
 		//Primitivos:---------------------------------------
 		//conversões do menor para o maior (implicita), são mais tranquilos de fazer, pois o "tipo maior suporta o menor... do maior pro menor é explicita"
-		byte b = -56; 				// 8bits => -128 a 127
-		short s = 542; 				// 2bytes
-		int i = 56789;				// 4bytes - default
-		long l = 3_134_845_223L;	// 8bytes
+		byte b = -56; 				// 8bits => -128 a 127 
+		short s = 542; 				// 2bytes -32.768..32.767
+		int i = 56789;				// 4bytes - default -2147483648..2147483647
+		long l = 3_134_845_223L;	// 8bytes -9223372036854775808L..-9223372036854775807L
 		float f = 11_445.44F;		// 4bytes
 		double d = 2_991_797.01;	// 8bytes - default
 		char c = '\u0010';			// 1 caractere
 		boolean bl = true;			// false ou true
+		int decimal =-13;
+		int octal =0123;
+		int hexadecimal=0xCAFE10;  //0123456789ABCDEF
 		
+		double numero1 = 15;
+		double numero2 = 20;
+		
+		int respostaSubtracao = (int)(numero1 - numero2);
+		System.out.println("AQUIIIIIIII: "+respostaSubtracao);
 		/*
 		 * 1100 1000 (-56)
 		 * &
@@ -81,9 +91,25 @@ public class PrimeiroPrograma {
 		String teste2 = stext.next(); //pega a linha removendo espaços a direita e esquerda
 		System.out.println(teste);
 		stext.close();
+	
+		
+//		//Primitivos:---------------------------------------
+//		//conversões do menor para o maior (implicita), são mais tranquilos de fazer, pois o "tipo maior suporta o menor... do maior pro menor é explicita"
+//		byte b = -56; 				// 8bits => -128 a 127
+//		
+//		int novoInteiro2 = (int)b;				// 8bits => -128 a 127
+//		short s = 542; 				// 2bytes
+//		int i = 56789;				// 4bytes - default
+//		long l = 3_134_845_223L;	// 8bytes
+//		float f = 11_445.44F;		// 4bytes
+//		double d = 2_991_797.01;	// 8bytes - default
+//		char c = '\u0010';			// 1 caractere
+//		boolean bl = true;			// false ou true
 		
 		//Wrapers: Classe que envolve um tipo primitivo.
 		Byte b2 = -56; 				// 8bits => -128 a 127
+		Integer novoInteiro = b2.intValue();				// 8bits => -128 a 127
+		
 		Short s2 = 542; 			// 2bytes
 		Integer i2 = 56789;			// 4bytes - default
 		Long l2 = 3_134_845_223L;	// 8bytes
@@ -91,7 +117,9 @@ public class PrimeiroPrograma {
 		Double d2 = 2_991_797.01;	// 8bytes - default
 		Character c2 = '\u0010';	// 1 caractere
 		Boolean b3 = true;			// false ou true
-		
+		Character.isUpperCase(c2);
+		Double.isNaN(d2);
+		String resultadoTernario = (b3 == true) ? "sim" : "nao";
 		/*
 		* Operadores---------------------
 		*Precedência | Operador   | Tipo                                | Associatividade
