@@ -28,7 +28,7 @@ public class Teclado extends JPanel implements ActionListener{
 		c.fill=GridBagConstraints.BOTH;
 		setBackground(Color.DARK_GRAY);
 		setLayout(layout);
-		//teste comit
+		//teste comit 2
 		addBotao("AC",CINZA_ESCURO,c,0,0);
 		addBotao("+/-",CINZA_ESCURO,c,1,0);
 		addBotao("%",CINZA_ESCURO,c,2,0);
