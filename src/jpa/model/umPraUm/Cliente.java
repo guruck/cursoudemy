@@ -1,48 +1,61 @@
-package jpa;
+package jpa.model.umPraUm;
 
-import java.io.Serializable;
-
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "tbl007_usuario")
-public class Usuario implements Serializable{
-	private static final long serialVersionUID = 1L;
+@Table(name = "tbl009_clientes")
+public class Cliente {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private String nome;
-	private String email;
 	
-	public Usuario() {}
-	public Usuario(String nome, String email) {
+	@Column(name="cliente_nome",length=150,nullable=false)
+	private String nome;
+	
+	@OneToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name="acento_id", unique = true)
+	private Acento acento;
+
+	public Cliente() {}
+	
+	public Cliente(String nome) {
 		super();
 		this.nome = nome;
-		this.email = email;
 	}
-	
+
 	public Long getId() {
 		return id;
 	}
+
 	public void setId(Long id) {
 		this.id = id;
 	}
+
 	public String getNome() {
 		return nome;
 	}
+
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	public String getEmail() {
-		return email;
+
+	public Acento getAcento() {
+		return acento;
 	}
-	public void setEmail(String email) {
-		this.email = email;
+
+	public void setAcento(Acento acento) {
+		this.acento = acento;
 	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -50,11 +63,7 @@ public class Usuario implements Serializable{
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
-	
-	@Override
-	public String toString() {
-		return "Usuario [id=" + id + ", nome=" + nome + ", email=" + email + "]";
-	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -63,7 +72,7 @@ public class Usuario implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Usuario other = (Usuario) obj;
+		Cliente other = (Cliente) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -71,6 +80,13 @@ public class Usuario implements Serializable{
 			return false;
 		return true;
 	}
+
+	@Override
+	public String toString() {
+		return "Cliente [id=" + id + ", nome=" + nome + ", acento=" + acento + "]";
+	}
+	
+	
 	
 	
 }

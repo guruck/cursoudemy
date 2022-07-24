@@ -1,10 +1,10 @@
-package jpa.teste;
+package jpa.teste.basico;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-import jpa.Usuario;
+import jpa.model.basico.Usuario;
 public class NovoUsuario {
 
 	public static void main(String[] args) {
