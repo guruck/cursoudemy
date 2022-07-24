@@ -19,13 +19,6 @@ public class DAO<E> {
 	private EntityManager em;
 	private Class<E> classe;
 
-	private static Properties getProperties() throws IOException {
-		Properties prop = new Properties();
-		String caminho = "/.properties";
-		prop.load(FactoryConection.class.getResourceAsStream(caminho));
-		return prop;
-	}
-
 	static {
 		try {
 			Map<String, String> properties = new HashMap<String, String>();
@@ -113,4 +106,19 @@ public class DAO<E> {
 	public void close() {
 		em.close();
 	}
+	
+	private static Properties getProperties() throws IOException {
+		Properties prop = new Properties();
+		String caminho = "/.properties";
+		prop.load(FactoryConection.class.getResourceAsStream(caminho));
+		return prop;
+	}
+	//criado apenas para substituir no pacote basico nao necessário
+	public static EntityManagerFactory getEmf() {
+		return emf;
+	}
+	public EntityManager getEm() {
+		return em;
+	}
+	
 }

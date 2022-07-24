@@ -4,16 +4,18 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-//import javax.persistence.TypedQuery;
 
 import jpa.model.basico.Usuario;
+import jpa.model.infra.DAO;
 public class ObterUsuario {
 
 	public static void main(String[] args) {
 		
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("cursoudemy");
-		EntityManager em = emf.createEntityManager();
+//		EntityManagerFactory emf = Persistence.createEntityManagerFactory("cursoudemy");
+//		EntityManager em = emf.createEntityManager();
+		DAO<Usuario> dao = new DAO<>();
+		EntityManagerFactory emf = DAO.getEmf();
+		EntityManager em = dao.getEm();
 		
 //		Usuario user = em.find(Usuario.class, 5L);
 //		System.out.println(user.toString());

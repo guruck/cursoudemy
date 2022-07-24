@@ -2,16 +2,18 @@ package jpa.teste.basico;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 
 import jpa.model.basico.Usuario;
+import jpa.model.infra.DAO;
 public class NovoUsuario {
 
 	public static void main(String[] args) {
 		
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("cursoudemy");
-		EntityManager em = emf.createEntityManager();
-		
+//		EntityManagerFactory emf = Persistence.createEntityManagerFactory("cursoudemy");
+//		EntityManager em = emf.createEntityManager();
+		DAO<Usuario> dao = new DAO<>();
+		EntityManagerFactory emf = DAO.getEmf();
+		EntityManager em = dao.getEm();		
 //		Usuario novo = new Usuario("Jonas Brother","jonas@brother.com");
 //		Usuario novo = new Usuario("Xitao Xororo","xitao@xororo.com");
 //		Usuario novo = new Usuario("Xuxa Meneguel","xuxa@meneguel.com");
