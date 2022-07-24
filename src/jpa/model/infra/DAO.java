@@ -1,20 +1,50 @@
 package jpa.model.infra;
 
+import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Properties;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 
+import jdbc.FactoryConection;
+
 public class DAO<E> {
 	
 	private static EntityManagerFactory emf;
 	private EntityManager em;
 	private Class<E> classe;
+
+	private static Properties getProperties() throws IOException {
+		Properties prop = new Properties();
+		String caminho = "/.properties";
+		prop.load(FactoryConection.class.getResourceAsStream(caminho));
+		return prop;
+	}
+
 	static {
 		try {
-			emf = Persistence.createEntityManagerFactory("cursoudemy");
+			Map<String, String> properties = new HashMap<String, String>();
+			Properties prop = getProperties();
+			final String url = prop.getProperty("banco.url") +
+					prop.getProperty("banco.server") + 
+					prop.getProperty("banco.port") + 
+					prop.getProperty("banco.database") + 
+					prop.getProperty("banco.details");
+			properties.put("javax.persistence.jdbc.driver", prop.getProperty("banco.jdbc.driver"));
+			properties.put("javax.persistence.jdbc.url", url);
+			properties.put("javax.persistence.jdbc.user", prop.getProperty("banco.user"));
+			properties.put("javax.persistence.jdbc.password", prop.getProperty("banco.pswd"));
+			properties.put("hibernate.dialect", prop.getProperty("hibernate.dialect"));
+			properties.put("hibernate.show_sql", prop.getProperty("hibernate.show_sql"));
+			properties.put("hibernate.format_sql", prop.getProperty("hibernate.format_sql"));
+			properties.put("hibernate.hbm2ddl.auto", prop.getProperty("hibernate.hbm2ddl.auto"));
+
+			emf = Persistence.createEntityManagerFactory("cursoudemy",properties);
 		} catch (Exception e) {
 			// TODO gerar LOG
 			System.out.println(e.getMessage());

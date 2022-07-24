@@ -9,4 +9,3 @@ logs
 .project
 .classpath
 /src/.properties
-/src/META-INF/*

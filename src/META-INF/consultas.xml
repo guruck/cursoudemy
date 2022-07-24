@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings version="2.1" 
+ xmlns="http://xmlns.jcp.org/xml/ns/persistence/orm" 
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+ xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence/orm http://xmlns.jcp.org/xml/ns/persistence/orm_2_1.xsd">
+
+	<named-query name="obterSobrinhosByNome">
+		<query>
+			select s from Sobrinho s
+			join fetch s.tios
+			where s.nome like :nome
+		</query>
+	</named-query>
+	<named-query name="obterSobrinhosMaiorIdade">
+		<query>
+			select s from Sobrinho s
+			join fetch s.tios
+			where s.idade > :idade
+		</query>
+	</named-query>
+	
+	<named-native-query name="obterSobrinhosMediaPeso" 
+		result-set-mapping="PesoSobrinhoMap">
+		<query>
+			select avg(s.peso) as media from tbl014_sobrinhos s
+		</query>
+	</named-native-query>
+	
+	<sql-result-set-mapping name="PesoSobrinhoMap">
+		<constructor-result target-class="jpa.model.consulta.SobrinhoPeso">
+			<column name="media" class="java.lang.Double"/>
+		</constructor-result>
+	</sql-result-set-mapping>
+</entity-mappings>
